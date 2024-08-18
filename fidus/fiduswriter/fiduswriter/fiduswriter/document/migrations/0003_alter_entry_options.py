@@ -1,1 +1,0 @@
-/home/min/mliahu/prosemirror-track-changes-demo/github.com/fiduswriter/fiduswriter/fiduswriter/bibliography/migrations/0003_alter_entry_options.py
