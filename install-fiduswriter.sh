@@ -48,8 +48,8 @@ mkdir -p $(dirname $fwdir) || true
   git clone --depth 1 --branch $fiduswriter_branch https://github.com/fiduswriter/fiduswriter.git
   cd fiduswriter
 
-  patch -p1 --forward --reject-file=- <"$patchfile_path"
-  patch -p1 --forward --reject-file=- <"$patchfile_path_2"
+  #patch -p1 --forward --reject-file=- <"$patchfile_path"
+  #patch -p1 --forward --reject-file=- <"$patchfile_path_2"
 
   cd fiduswriter
 
@@ -72,7 +72,7 @@ mkdir -p $(dirname $fwdir) || true
 
   # https://github.com/fiduswriter/fiduswriter/wiki/Installation-for-developers
 
-  cp configuration.py-default configuration.py
+  cp configuration-default.py configuration.py
 
   # debian
   which apt >/dev/null && {
