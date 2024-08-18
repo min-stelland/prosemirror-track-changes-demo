@@ -3,5 +3,4 @@ node_modules
 dist
 dist-ssr
 *.localgithub.com
-github.com
 pnpm-lock.yaml

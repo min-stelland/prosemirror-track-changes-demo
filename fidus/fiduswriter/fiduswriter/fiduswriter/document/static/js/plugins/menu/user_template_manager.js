@@ -1,0 +1,1 @@
+/home/min/mliahu/prosemirror-track-changes-demo/github.com/fiduswriter/fiduswriter/fiduswriter/user_template_manager/static/js/plugins/menu/user_template_manager.js
