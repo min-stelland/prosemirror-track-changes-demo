@@ -1,1 +1,0 @@
-/home/min/mliahu/prosemirror-track-changes-demo/github.com/fiduswriter/fiduswriter/fiduswriter/base/static/js/plugins/prelogin/init.js

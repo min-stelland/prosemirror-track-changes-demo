@@ -1,1 +1,0 @@
-/home/min/mliahu/prosemirror-track-changes-demo/github.com/fiduswriter/fiduswriter/fiduswriter/user/migrations/0011_delete_loginas_alter_user_options.py

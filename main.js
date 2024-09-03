@@ -15,10 +15,7 @@ import {EditorState, Plugin} from "prosemirror-state"
 import {EditorView} from "prosemirror-view"
 import {Schema, DOMParser} from "prosemirror-model"
 import {schema} from "prosemirror-schema-basic"
-import {buildMenuItems, exampleSetup} from "prosemirror-example-setup"
-import {MenuItem} from "prosemirror-menu"
-import {commentPlugin, commentUI, addAnnotation, annotationIcon} from "./comment"
-import {collab} from "prosemirror-collab"
+import {exampleSetup} from "prosemirror-example-setup"
 
 //import applyDevTools from "prosemirror-dev-tools";
 // dependencies: "prosemirror-dev-tools": "*", "react": "*", "react-dom": "*", "unstated": "*"
@@ -39,36 +36,8 @@ import { baseKeymap } from "prosemirror-commands"
 import { keymap } from 'prosemirror-keymap'
 
 
-class Authority {
-  constructor(doc) {
-    this.doc = doc
-    this.steps = []
-    this.stepClientIDs = []
-    this.onNewSteps = []
-  }
 
-  receiveSteps(version, steps, clientID) {
-    if (version != this.steps.length) return
-
-    // Apply and accumulate new steps
-    steps.forEach(step => {
-      this.doc = step.apply(this.doc).doc
-      this.steps.push(step)
-      this.stepClientIDs.push(clientID)
-    })
-    // Signal listeners
-    this.onNewSteps.forEach(function(f) { f() })
-  }
-
-  stepsSince(version) {
-    return {
-      steps: this.steps.slice(version),
-      clientIDs: this.stepClientIDs.slice(version)
-    }
-  }
-}
-
-class TextEditor {
+export class TextEditor {
 
   constructor() {
 
@@ -117,15 +86,6 @@ class TextEditor {
     this.plugins.push(...examplePlugins);
     //console.log('TextEditor examplePlugins', examplePlugins);
 
-    const annotationMenuItem = new MenuItem({
-      title: "Add an annotation",
-      run: addAnnotation,
-      select: state => addAnnotation(state),
-      icon: annotationIcon
-    })
-    let menu = buildMenuItems(schema)
-    menu.fullMenu[0].push(annotationMenuItem)
-
     //plugins.push(focusPlugin);
 
     // replace document with editor
@@ -147,11 +107,7 @@ class TextEditor {
     this.docInfo.access_rights = 'write-tracked'; // enable "track changes" for amend_transaction.js
     this.schema = docSchema
 
-    var doc = DOMParser.fromSchema(this.schema).parse(this.docSource);
-    const authority = new Authority(doc);
-    var collabPlugin = collab({version: authority.steps.length})
-    this.plugins.push(collabPlugin);
-
+    console.log(this.docSource);
     this.view = new EditorView(
       editorElement, {
       state: EditorState.create({
@@ -203,8 +159,4 @@ class TextEditor {
 
     new ModTrack(this);
   }
-}
-
-document.body.onload = function () {
-  new TextEditor();
 }
